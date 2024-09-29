@@ -1,6 +1,8 @@
-import sys, os
+import os
+import sys
 import tkinter as tk
 from tkinter import scrolledtext
+
 import deepl
 import yaml
 
