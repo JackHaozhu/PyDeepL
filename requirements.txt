@@ -1,0 +1,5 @@
+PyYAML
+pyinstaller
+deepl
+keyboard
+pystray
