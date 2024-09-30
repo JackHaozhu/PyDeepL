@@ -1,0 +1,13 @@
+<RCC>
+  <qresource prefix="ComboBox">
+    <file>下拉箭头.svg</file>
+  </qresource>
+  <qresource prefix="Icon">
+    <file>pydeepl.ico</file>
+  </qresource>
+  <qresource prefix="CopyButton">
+    <file>复制-hover.svg</file>
+    <file>复制.svg</file>
+    <file>复制-pressed.svg</file>
+  </qresource>
+</RCC>

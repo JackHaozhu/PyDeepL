@@ -1,0 +1,4 @@
+deepl_api: "enter deepl api key"
+# 输入你的DeepL API密钥
+
+call_shortcut: <ctrl>+<space>

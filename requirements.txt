@@ -1,0 +1,9 @@
+PyYAML
+pyinstaller
+deepl
+keyboard
+pystray
+PILLOW
+PyQt5
+pynput
+pywin32

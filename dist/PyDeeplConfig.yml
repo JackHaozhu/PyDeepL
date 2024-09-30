@@ -1,0 +1,4 @@
+deepl_api: "abc55bf3-2226-4fb6-8208-12ba89ec65df:fx"
+# 输入你的DeepL API密钥
+
+call_shortcut: <ctrl>+<space>
