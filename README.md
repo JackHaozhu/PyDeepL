@@ -1,5 +1,5 @@
 # PyDeepL
-PyDeepL 是一个基于 DeepL API 的翻译工具，支持自动检测源语言并翻译为目标语言。
+PyDeepL 是一个基于 Python 并使用 DeepL API 的翻译工具
 ## 快速开始
 ### 配置文件
 首次运行程序时，会自动生成配置文件 `PyDeeplConfig.yml`。请在该文件中填入你的 DeepL API 密钥，以便程序正常使用。
