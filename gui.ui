@@ -334,6 +334,42 @@ QComboBox QAbstractItemView{
         <item>
          <layout class="QHBoxLayout" name="TranslateLayout">
           <item>
+           <widget class="QPushButton" name="UploadFileButton">
+            <property name="toolTip">
+             <string>文件翻译</string>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton {
+	height: 40px;
+	width: 40px;
+	border: none;
+	border-image: url(:/UploadButton/上传文件.svg);
+	margin-left: 20px;
+}
+
+QPushButton:hover {
+	border-image: url(:/UploadButton/上传文件-hover.svg);
+}
+
+QPushButton:pressed {
+	border-image: url(:/UploadButton/上传文件-pressed.svg);
+}
+
+QToolTip{
+	background-color: #36393E;
+	border: none;
+	border-radius: 10px;
+	font: 8pt &quot;Microsoft Yahei&quot;;
+	color: #A7ABBD;
+
+}</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item>
            <spacer name="horizontalSpacer_2">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>

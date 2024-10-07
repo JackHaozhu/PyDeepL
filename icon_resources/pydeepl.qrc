@@ -2,6 +2,11 @@
   <qresource prefix="ComboBox">
     <file>下拉箭头.svg</file>
   </qresource>
+  <qresource prefix="UploadButton">
+    <file>上传文件.svg</file>
+    <file>上传文件-hover.svg</file>
+    <file>上传文件-pressed.svg</file>
+  </qresource>
   <qresource prefix="Icon">
     <file>pydeepl.ico</file>
   </qresource>

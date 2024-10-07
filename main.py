@@ -1,6 +1,8 @@
+import subprocess
+
 import gui
 
-from PyQt5.QtWidgets import QApplication, QMainWindow
+from PyQt5.QtWidgets import QApplication, QMainWindow, QFileDialog
 from PyQt5.QtGui import QIcon
 import os
 import sys
@@ -9,6 +11,7 @@ import yaml
 from pynput import keyboard
 import pystray
 from PIL import Image
+import datetime
 
 import win32gui, win32con, win32api
 
@@ -44,7 +47,8 @@ class MainWindow(QMainWindow):
         self.clear_text()
 
         # 托盘图标
-        self.tray_icon = pystray.Icon('PyDeepL', Image.open(self.get_resource_path('./icon_resources/pydeepl.ico')), title='PyDeepL',
+        self.tray_icon = pystray.Icon('PyDeepL', Image.open(self.get_resource_path('./icon_resources/pydeepl.ico')),
+                                      title='PyDeepL',
                                       menu=pystray.Menu(
                                           pystray.MenuItem('打开窗口', self.show_window),
                                           pystray.MenuItem('退出', self.exit_app)
@@ -58,6 +62,7 @@ class MainWindow(QMainWindow):
         self.ui.ClearButton.clicked.connect(self.clear_text)
         self.ui.TranslateButton.clicked.connect(self.translate_text)
         self.ui.CopyButton.clicked.connect(self.copy_text)
+        self.ui.UploadFileButton.clicked.connect(self.select_and_translate_file)
 
         # 监听快捷键
         config = read_config()
@@ -107,6 +112,31 @@ class MainWindow(QMainWindow):
         clipboard = QApplication.clipboard()
         clipboard.setText(self.ui.OutputTextBrowser.toPlainText())
 
+    def select_and_translate_file(self):
+        options = QFileDialog.Options()
+        file_path, _ = QFileDialog.getOpenFileName(self, '选择文件', '',
+                                                   '可翻译文件 (*.txt *.doc *.docx *.pptx *.xlsx *.pdf *.htm *.html *.xlf *.xliff *.srt);;所有文件 (*)',
+                                                   options=options)
+        if file_path:
+            directory, filename = os.path.split(file_path)
+            name, ext = os.path.splitext(filename)
+            timestamp = datetime.datetime.now().strftime('%y%m%d%H%M%S')
+            new_file_name = f'{name}_translated_{timestamp}{ext}'
+            save_path = os.path.join(directory, new_file_name)
+            try:
+                config = read_config()
+                auth_key = config['deepl_api']
+                target_lang = self.ui.TargetComboBox.currentIndex()
+
+                target_map = ['ZH', 'EN-US', 'JA', 'FR', 'DE', 'IT', 'ES', 'PT-PT', 'RU']
+
+                translator = deepl.Translator(auth_key)
+                translator.translate_document_from_filepath(file_path, save_path, target_lang=target_map[target_lang])
+
+                subprocess.run(f'explorer /select,"{save_path}"')
+            except Exception as e:
+                self.ui.OutputTextBrowser.setText(f'错误：{e}')
+
     def translate(self, text: str) -> str:
         config = read_config()
         auth_key = config['deepl_api']
@@ -151,4 +181,4 @@ if __name__ == '__main__':
     main_window = MainWindow()
     main_window.show()
     sys.exit(app.exec_())
-# pyinstaller --onefile --windowed --add-data "gui.py;." --add-data "pydeepl_rc.py;." --add-data "icon_resources;icon_resources" main.py
+# pyinstaller --onefile --windowed --add-data "gui.py;." --add-data "pydeepl_rc.py;." --add-data "icon_resources;icon_resources" main.py  --icon='icon_resources/pydeepl.ico' --name=PyDeepL

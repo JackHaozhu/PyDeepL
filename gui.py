@@ -180,6 +180,34 @@ class Ui_MainWindow(object):
         self.InputLayout.addWidget(self.InputTextEdit)
         self.TranslateLayout = QtWidgets.QHBoxLayout()
         self.TranslateLayout.setObjectName("TranslateLayout")
+        self.UploadFileButton = QtWidgets.QPushButton(self.centralwidget)
+        self.UploadFileButton.setStyleSheet("QPushButton {\n"
+"    height: 40px;\n"
+"    width: 40px;\n"
+"    border: none;\n"
+"    border-image: url(:/UploadButton/上传文件.svg);\n"
+"    margin-left: 20px;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    border-image: url(:/UploadButton/上传文件-hover.svg);\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    border-image: url(:/UploadButton/上传文件-pressed.svg);\n"
+"}\n"
+"\n"
+"QToolTip{\n"
+"    background-color: #36393E;\n"
+"    border: none;\n"
+"    border-radius: 10px;\n"
+"    font: 8pt \"Microsoft Yahei\";\n"
+"    color: #A7ABBD;\n"
+"\n"
+"}")
+        self.UploadFileButton.setText("")
+        self.UploadFileButton.setObjectName("UploadFileButton")
+        self.TranslateLayout.addWidget(self.UploadFileButton)
         spacerItem1 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.TranslateLayout.addItem(spacerItem1)
         self.ClearButton = QtWidgets.QPushButton(self.centralwidget)
@@ -352,6 +380,7 @@ class Ui_MainWindow(object):
         self.TargetComboBox.setItemText(6, _translate("MainWindow", "西班牙语"))
         self.TargetComboBox.setItemText(7, _translate("MainWindow", "葡萄牙语"))
         self.TargetComboBox.setItemText(8, _translate("MainWindow", "俄语"))
+        self.UploadFileButton.setToolTip(_translate("MainWindow", "文件翻译"))
         self.ClearButton.setText(_translate("MainWindow", "清空"))
         self.TranslateButton.setText(_translate("MainWindow", "翻译"))
         self.CopyButton.setToolTip(_translate("MainWindow", "复制"))
